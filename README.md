@@ -5,7 +5,7 @@ This is a plugin for showing a native +1 button
 
 To install
 
-```cordova plugin add https://github.com/jcesarmobile/plusOneButtonPlugin```
+`cordova plugin add https://github.com/jcesarmobile/plusOneButtonPlugin`
 
 To use it:
 
@@ -16,4 +16,4 @@ plusOneButton.show(params);```
 
 Or
 
-```plusOneButton.show("http://www.example.com");```
+`plusOneButton.show("http://www.example.com");`
