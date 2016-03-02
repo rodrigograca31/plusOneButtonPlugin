@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0"
+           id="cordova-plugin-plusonebutton"
+      version="1.0.0">
+    <name>Plus Button</name>
+
+    <js-module src="www/plusOneButton.js" name="plusOneButton">
+        <clobbers target="plusOneButton" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <framework src="com.google.android.gms:play-services-plus:+" />
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PlusOneButtonPlugin" >
+                <param name="android-package" value="com.jcesarmobile.plusonebutton.PlusOneButtonPlugin"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/PlusOneButtonPlugin.java" target-dir="src/com/jcesarmobile/plusonebutton" />
+    </platform>
+</plugin>
