@@ -9,10 +9,15 @@ To install
 
 To use it:
 
-```var params = {};
+```
+var params = {};
+
 params.url = "http://www.example.com";
+
 params.position = {x:100,y:100};
-plusOneButton.show(params);```
+
+plusOneButton.show(params);
+```
 
 Or
 
