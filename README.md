@@ -5,7 +5,7 @@ This is a plugin for showing a native +1 button
 
 To install
 
-`cordova plugin add https://github.com/jcesarmobile/plusOneButtonPlugin`
+`cordova plugin add cordova-plugin-plusonebutton`
 
 To use it:
 
