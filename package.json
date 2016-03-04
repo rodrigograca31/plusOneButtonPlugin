@@ -1,0 +1,25 @@
+{
+  "name": "cordova-plugin-plusonebutton",
+  "version": "1.0.0",
+  "description": "This is a plugin for showing a native +1 button",
+  "cordova": {
+    "id": "cordova-plugin-plusonebutton",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jcesarmobile/plusOneButtonPlugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "jcesarmobile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jcesarmobile/plusOneButtonPlugin/issues"
+  },
+  "homepage": "https://github.com/jcesarmobile/plusOneButtonPlugin#readme"
+}
