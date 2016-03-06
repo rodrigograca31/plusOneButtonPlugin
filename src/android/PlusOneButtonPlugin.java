@@ -38,11 +38,12 @@ import com.google.android.gms.plus.PlusOneButton;
 public class PlusOneButtonPlugin extends CordovaPlugin {
 
 
-
     private PlusOneButton mPlusOneButton;
     private String URL;
     private long x;
     private long y;
+    private int size; //SIZE_SMALL = 0, SIZE_MEDIUM = 1, SIZE_TALL = 2, SIZE_STANDARD = 3
+    private int annotation; //ANNOTATION_NONE = 0, ANNOTATION_BUBBLE = 1, ANNOTATION_INLINE = 2
 
 
     /**
@@ -63,6 +64,8 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                 }
                 x = obj.optJSONObject("position").optLong("x",0);
                 y = obj.optJSONObject("position").optLong("y",0);
+                size = obj.optInt("size", 3);
+                annotation = obj.optInt("annotation", 1);
             } else if (args.optString(0)!=null) {
                 URL = args.optString(0);
             } else {
@@ -76,6 +79,8 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                     cordova.getActivity().addContentView(mPlusOneButton,new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT));
                     mPlusOneButton.setX(x);
                     mPlusOneButton.setY(y);
+                    mPlusOneButton.setSize(size);
+                    mPlusOneButton.setAnnotation(annotation);
                 }
             });
 

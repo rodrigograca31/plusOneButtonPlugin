@@ -14,6 +14,10 @@ var params = {};
 
 params.url = "http://www.example.com";
 
+params.size = 2;
+
+params.annotation = 1;
+
 params.position = {x:100,y:100};
 
 plusOneButton.show(params);
