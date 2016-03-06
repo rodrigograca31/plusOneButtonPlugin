@@ -64,8 +64,8 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                 }
                 x = obj.optJSONObject("position").optLong("x",0);
                 y = obj.optJSONObject("position").optLong("y",0);
-                size = obj.optInt("size", 0);
-                annotation = obj.optInt("annotation", 0);
+                size = obj.optInt("size", 3);
+                annotation = obj.optInt("annotation", 1);
             } else if (args.optString(0)!=null) {
                 URL = args.optString(0);
             } else {
