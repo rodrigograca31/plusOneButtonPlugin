@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 
@@ -38,12 +39,13 @@ import com.google.android.gms.plus.PlusOneButton;
 public class PlusOneButtonPlugin extends CordovaPlugin {
 
 
-    private PlusOneButton mPlusOneButton;
+    private PlusOneButton mPlusOneButton = null;
     private String URL;
     private long x;
     private long y;
     private int size; //SIZE_SMALL = 0, SIZE_MEDIUM = 1, SIZE_TALL = 2, SIZE_STANDARD = 3
     private int annotation; //ANNOTATION_NONE = 0, ANNOTATION_BUBBLE = 1, ANNOTATION_INLINE = 2
+    private boolean created = false;
 
 
     /**
@@ -71,12 +73,18 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
             } else {
                 callbackContext.error("you have to provide an url");
             }
-            mPlusOneButton =  new PlusOneButton(cordova.getActivity());
-            mPlusOneButton.initialize(URL, null);
+            if (mPlusOneButton==null) {
+                mPlusOneButton =  new PlusOneButton(cordova.getActivity());
+            }
 
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    cordova.getActivity().addContentView(mPlusOneButton,new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT));
+                    mPlusOneButton.initialize(URL, null);
+                    mPlusOneButton.setVisibility(View.VISIBLE);
+                    if (!created) {
+                        cordova.getActivity().addContentView(mPlusOneButton,new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT));
+                        created = true;
+                    }
                     mPlusOneButton.setX(x);
                     mPlusOneButton.setY(y);
                     mPlusOneButton.setSize(size);
@@ -84,6 +92,12 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                 }
             });
 
+        } else if (action.equals("hide")) {
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    mPlusOneButton.setVisibility(View.GONE);
+                }
+            });
         } else {
             return false;
         }
