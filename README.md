@@ -12,7 +12,7 @@ To use it:
 Show the button
 ===============
 
-`
+```
 var params = {};
 
 params.url = "http://www.example.com";
@@ -24,7 +24,7 @@ params.annotation = 1;
 params.position = {x:100,y:100};
 
 plusOneButton.show(params);
-`
+```
 
 Or
 
