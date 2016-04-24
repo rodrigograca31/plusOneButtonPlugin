@@ -93,11 +93,13 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
             });
 
         } else if (action.equals("hide")) {
+          if (mPlusOneButton!=null) {
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     mPlusOneButton.setVisibility(View.GONE);
                 }
             });
+          }
         } else {
             return false;
         }
