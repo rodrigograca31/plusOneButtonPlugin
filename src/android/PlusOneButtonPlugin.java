@@ -109,7 +109,9 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
     @Override
     public void onResume(boolean multitasking) {
         super.onResume(multitasking);
-        mPlusOneButton.initialize(URL, null);
+        if (mPlusOneButton!=null) {
+          mPlusOneButton.initialize(URL, null);
+        }
     }
 
 }
