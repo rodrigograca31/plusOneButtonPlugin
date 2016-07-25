@@ -29,8 +29,11 @@ import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import java.lang.System;
 
 import com.google.android.gms.plus.PlusOneButton;
+import android.content.Intent;
+import org.apache.cordova.PluginResult;
 
 
 /**
@@ -46,6 +49,8 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
     private int size; //SIZE_SMALL = 0, SIZE_MEDIUM = 1, SIZE_TALL = 2, SIZE_STANDARD = 3
     private int annotation; //ANNOTATION_NONE = 0, ANNOTATION_BUBBLE = 1, ANNOTATION_INLINE = 2
     private boolean created = false;
+    private CallbackContext callback = null;
+    final PlusOneButtonPlugin PObtn = this;
 
 
     /**
@@ -74,7 +79,7 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                 callbackContext.error("you have to provide an url");
             }
             if (mPlusOneButton==null) {
-                mPlusOneButton =  new PlusOneButton(cordova.getActivity());
+                mPlusOneButton = new PlusOneButton(cordova.getActivity());
             }
 
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -100,6 +105,22 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
                 }
             });
           }
+        } else if (action.equals("onClick")) {
+            if (mPlusOneButton!=null) {
+                callback = callbackContext;
+                mPlusOneButton.setOnPlusOneClickListener(new PlusOneButton.OnPlusOneClickListener() {
+                    @Override
+                    public void onPlusOneClick(Intent intent) {
+                        System.out.println("1 Click!");
+
+                        PluginResult result = new PluginResult(PluginResult.Status.OK);
+                        result.setKeepCallback(true);
+                        callback.sendPluginResult(result);
+
+                        cordova.startActivityForResult(PObtn, intent, 0);
+                    }
+                });
+            }
         } else {
             return false;
         }
@@ -110,7 +131,19 @@ public class PlusOneButtonPlugin extends CordovaPlugin {
     public void onResume(boolean multitasking) {
         super.onResume(multitasking);
         if (mPlusOneButton!=null) {
-          mPlusOneButton.initialize(URL, null);
+            mPlusOneButton.initialize(URL, null);
+            mPlusOneButton.setOnPlusOneClickListener(new PlusOneButton.OnPlusOneClickListener() {
+                @Override
+                public void onPlusOneClick(Intent intent) {
+                    System.out.println("2 Click!");
+
+                    PluginResult result = new PluginResult(PluginResult.Status.OK);
+                    result.setKeepCallback(true);
+                    callback.sendPluginResult(result);
+
+                    cordova.startActivityForResult(PObtn, intent, 0);
+                }
+            });
         }
     }
 
